@@ -1,4 +1,7 @@
 .book {
+  &__review-form {
+    margin-bottom: 20px;
+  }
   &__stars {
     margin-right: 10px;
   }
@@ -9,5 +12,8 @@
   }
   &__star-rating {
     color: #f2c94c;
+  }
+  &__review-content-textarea {
+    margin-bottom: 20px;
   }
 }
