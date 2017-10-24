@@ -25,13 +25,14 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    @review.user = current_user
 
     respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+      if @review.save!
+        format.html { redirect_to book_path(review_params[:book_id]), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        format.html { redirect_to book_path(review_params[:book_id]) }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +70,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:user_id, :book_id, :content, :star_rating)
+      params.require(:review).permit(:title, :book_id, :content, :star_rating)
     end
 end
