@@ -17,16 +17,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :avatar_data %>
-    <%= form.text_area :avatar_data, id: :profile_avatar_data %>
+    <%= form.label :about %>
+    <%= form.text_area :about, id: :profile_about %>
   </div>
 
   <div class="field">
-    <%= form.label :about %>
-    <%= form.text_area :about, id: :profile_about %>
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar, id: :profile_avatar %>
+  </div>
+
+  <div class="field">
+    Remove attachment: <%= form.check_box :remove_avatar %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

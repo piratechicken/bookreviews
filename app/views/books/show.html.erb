@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag(@book.image_url(:original)) if @book.image_data.present? %>
+
 <p>
   <strong>Title:</strong>
   <%= @book.title %>

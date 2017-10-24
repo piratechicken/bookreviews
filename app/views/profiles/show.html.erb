@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Avatar data:</strong>
-  <%= @profile.avatar_data %>
-</p>
+<%= image_tag(@profile.avatar_url(:thumb)) if @profile.avatar_data.present? %>
 
 <p>
   <strong>Name:</strong>
