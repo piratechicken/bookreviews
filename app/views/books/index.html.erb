@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Author</th>
       <th>Year</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><%= image_tag(book.image_url(:thumb)) if book.image_url(:thumb).present? %></td>
         <td><%= link_to book.title, book %></td>
         <td><%= list_authors(book) %></td>
         <td><%= book.year %></td>

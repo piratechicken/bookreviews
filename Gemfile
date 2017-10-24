@@ -10,6 +10,13 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem "font-awesome-rails"
 
+# gems for image uploading
+gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick'
+gem 'shrine'
+gem 'aws-sdk', '~> 3'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'

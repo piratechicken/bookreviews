@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag(@book.image_url(:original)) if @book.image_data.present? %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
 <div class="container">
   <h2><%= @book.title %>, <span><%= @book.year %></span></h2>
   <p>by <%= list_authors(@book) %></p>

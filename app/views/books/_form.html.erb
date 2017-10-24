@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: book, local: true) do |form| %>
   <% if book.errors.any? %>
     <div id="error_explanation">
@@ -30,6 +32,18 @@
     <%= form.label :genre %>
     <%= form.text_field :genre, id: :book_genre %>
   </div>
+
+  <div class="field">
+    <%= form.label :image %>: <%= form.file_field :image %>
+  </div>
+  <% if book.image_data? %>
+    <div class="field">
+      <%= image_tag book.image_url(:thumb) %>
+    </div>
+    <div class="field">
+      Remove attachment: <%= form.check_box :remove_image %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
