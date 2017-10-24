@@ -1,0 +1,13 @@
+.book {
+  &__stars {
+    margin-right: 10px;
+  }
+  &__review-title {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  &__star-rating {
+    color: #f2c94c;
+  }
+}

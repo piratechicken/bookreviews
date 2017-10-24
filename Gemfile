@@ -8,6 +8,7 @@ end
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem "font-awesome-rails"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

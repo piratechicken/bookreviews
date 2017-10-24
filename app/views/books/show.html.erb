@@ -10,13 +10,25 @@
 
   <p><%= @book.genre %></p>
 
-  <h2><%= pluralize @book.reviews.count, "review" %></h2>
+  <span class="book__stars">
+    <% @book.reviews.average(:star_rating).floor.times do |index| %>
+      <%= fa_icon "star", class: "book__star-rating" %>
+    <% end %>
+    <%= fa_icon "star-half-o", class: "book__star-rating" %>
+    <% (4 - @book.reviews.average(:star_rating).floor).times do |index| %>
+      <%= fa_icon "star-o", class: "book__star-rating" %>
+    <% end %>
+  </span>
+  <h2><%= @book.reviews.average(:star_rating).round(1) %> out of 5 stars (<%= pluralize @book.reviews.count, "review" %>)</h2>
   
   <% @book.reviews.each do |review| %>
     <div>
       <span class="book__stars">
         <% review.star_rating.times do |index| %>
           <%= fa_icon "star", class: "book__star-rating" %>
+        <% end %>
+        <% (5 - review.star_rating).times do |index| %>
+          <%= fa_icon "star-o", class: "book__star-rating" %>
         <% end %>
       </span>
       <h4 class="book__review-title"><%= review.title %></h4>
