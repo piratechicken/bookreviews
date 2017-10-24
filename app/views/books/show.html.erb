@@ -1,24 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<div class="container">
+  <h2><%= @book.title %>, <span><%= @book.year %></span></h2>
+  <p>by <% @book.authors.pluck(:first_name, :last_name).each do |author| %>
+    <%= "#{author.join(' ')}" %>
+  <% end %></p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @book.year %>
-</p>
+  <p><%= @book.description %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @book.description %>
-</p>
+  <p><%= @book.genre %></p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @book.genre %>
-</p>
+  <h2><%= pluralize @book.reviews.count, "review" %></h2>
+  
+  <% @book.reviews.each do |review| %>
+    <div>
+      <span class="book__stars">
+        <% review.star_rating.times do |index| %>
+          <%= fa_icon "star", class: "book__star-rating" %>
+        <% end %>
+      </span>
+      <h4 class="book__review-title"><%= review.title %></h4>
+    </div>
+    <p>By <%= review.user.profile.name %></p>
+    <% review.content.split("\n").each do |paragraph |%>
+      <p><%= paragraph %></p>
+    <% end %>
+  <% end %> 
+</div>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
