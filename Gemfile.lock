@@ -504,6 +504,8 @@ GEM
     execjs (2.7.0)
     fastimage (2.1.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.9.0)
@@ -627,8 +629,12 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+<<<<<<< HEAD
   fastimage
   image_processing
+=======
+  font-awesome-rails
+>>>>>>> ad7dd532bf29ae1972847c974bc108f15149c5d8
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mini_magick
@@ -645,4 +651,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
