@@ -10,10 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024031909) do
+ActiveRecord::Schema.define(version: 20171024032932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authorings", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_authorings_on_author_id"
+    t.index ["book_id"], name: "index_authorings_on_book_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.integer "year"
+    t.text "description"
+    t.string "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.text "avatar_data"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.text "content"
+    t.integer "star_rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +78,9 @@ ActiveRecord::Schema.define(version: 20171024031909) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authorings", "authors"
+  add_foreign_key "authorings", "books"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end
