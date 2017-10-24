@@ -11,6 +11,7 @@
   <p><%= @book.genre %></p>
 
   <h2><%= pluralize @book.reviews.count, "review" %></h2>
+  
   <% @book.reviews.each do |review| %>
     <div>
       <span class="book__stars">
