@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @books.each do |book| %>
+    <% @books.order(:title).each do |book| %>
       <tr>
         <td>
           <% if book.image_url(:thumb).present? %>
