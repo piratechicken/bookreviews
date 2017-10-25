@@ -23,7 +23,7 @@ module BooksHelper
     end 
 
     if rounded_stars > rounded_stars.floor 
-      fa_icon "star-half-o 2x", class: "book__star-rating" 
+        fa_icon "star-half-o 2x", class: "book__star-rating" 
       (4 - average_stars.floor).times do |index| 
         fa_icon "star-o 2x", class: "book__star-rating" 
       end 
