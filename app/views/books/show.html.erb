@@ -19,20 +19,7 @@
   <h2>Reader Reviews</h2>
   <% if @book.reviews.any? %>
     <span class="book__stars">
-      <% @book.reviews.average(:star_rating).floor.times do |index| %>
-        <%= fa_icon "star 2x", class: "book__star-rating" %>
-      <% end %>
-      <% if @book.reviews.average(:star_rating) > @book.reviews.average(:star_rating).floor %>
-        <%= fa_icon "star-half-o 2x", class: "book__star-rating" %>
-        <% (4 - @book.reviews.average(:star_rating).floor).times do |index| %>
-          <%= fa_icon "star-o 2x", class: "book__star-rating" %>
-        <% end %>
-      <% else %>
-        <% (5 - @book.reviews.average(:star_rating).floor).times do |index| %>
-          <%= fa_icon "star-o 2x", class: "book__star-rating" %>
-        <% end %>
-      <% end %>
-      (<%= pluralize @book.reviews.count, "review" %>)
+      <%= format_stars(@book) %>
     </span>
     <p><%= @book.reviews.average(:star_rating).round(1) %> out of 5 stars</p>
   <% else %>
