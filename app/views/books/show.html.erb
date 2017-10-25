@@ -2,10 +2,6 @@
 
 <%= image_tag(@book.image_url(:original)) if @book.image_data.present? %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
 <div class="container">
   <h2><%= @book.title %>, <span><%= @book.year %></span></h2>
   <p>by <%= list_authors(@book) %></p>
@@ -35,30 +31,35 @@
   <% else %>
     <p>This book has no reviews yet. Be the first to write a review</p>
   <% end %>
-  
-  <h4>Write a review</h4>
 
-  <%= form_with model: [@book, @review], local: true, class: "book__review-form" do |form|%>
-      <%= form.label :star_rating, '1 star' %>
-      <%= form.radio_button :star_rating, 1 %>      
-      <%= form.label :star_rating, '2 stars' %>
-      <%= form.radio_button :star_rating, 2 %>      
-      <%= form.label :star_rating, '3 stars' %>
-      <%= form.radio_button :star_rating, 3 %>
-      <%= form.label :star_rating, '4 stars' %>
-      <%= form.radio_button :star_rating, 4 %>
-      <%= form.label :star_rating, '5 stars' %>
-      <%= form.radio_button :star_rating, 5, checked: true %>
-      <%= form.hidden_field :book_id, value: @book.id %>
-      <div class="form-group">
-        <%= form.label "Title for your review" %>      
-        <%= form.text_field :title, id: :content, class: "form-control" %>      
-      </div>
-      <div class="form-group">
-        <%= form.label "Review content" %>      
-        <%= form.text_area :content, id: :content, class: "form-control book__review-content-textarea" %>      
-      </div>
-      <%= form.button "Submit", class: "btn btn-primary" %>    
+  <% if user_signed_in? %>
+
+    <h4>Write a review</h4>
+
+    <%= form_with model: @review, local: true, class: "book__review-form" do |form|%>
+        <%= form.label :star_rating, '1 star' %>
+        <%= form.radio_button :star_rating, 1 %>      
+        <%= form.label :star_rating, '2 stars' %>
+        <%= form.radio_button :star_rating, 2 %>      
+        <%= form.label :star_rating, '3 stars' %>
+        <%= form.radio_button :star_rating, 3 %>
+        <%= form.label :star_rating, '4 stars' %>
+        <%= form.radio_button :star_rating, 4 %>
+        <%= form.label :star_rating, '5 stars' %>
+        <%= form.radio_button :star_rating, 5, checked: true %>
+        <%= form.hidden_field :book_id, value: @book.id %>
+        <div class="form-group">
+          <%= form.label "Title for your review" %>      
+          <%= form.text_field :title, id: :content, class: "form-control" %>      
+        </div>
+        <div class="form-group">
+          <%= form.label "Review content" %>      
+          <%= form.text_area :content, id: :content, class: "form-control book__review-content-textarea" %>      
+        </div>
+        <%= form.button "Submit", class: "btn btn-primary" %>    
+    <% end %>
+  <% else %>
+    <p><%= link_to "Login", new_user_session_path %> to write a review</p>
   <% end %>
 
   <% @book.reviews.each do |review| %>
