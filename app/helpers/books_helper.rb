@@ -17,21 +17,24 @@ module BooksHelper
   def format_stars(book)
     average_stars = book.reviews.average(:star_rating)
     rounded_stars = round_stars(average_stars)
+    stars_arr = []
 
     rounded_stars.floor.times do |index| 
-      fa_icon "star 2x", class: "book__star-rating" 
+      stars_arr << "star 2x"
     end 
 
     if rounded_stars > rounded_stars.floor 
-        fa_icon "star-half-o 2x", class: "book__star-rating" 
+      stars_arr << "star-half-o 2x"
       (4 - average_stars.floor).times do |index| 
-        fa_icon "star-o 2x", class: "book__star-rating" 
+        stars_arr << "star-o 2x"
       end 
     else 
       (5 - rounded_stars.floor).times do |index| 
-        fa_icon "star-o 2x", class: "book__star-rating" 
+        stars_arr << "star-o 2x"
       end 
-    end 
+    end
+     
+    stars_arr
   end
 
 end

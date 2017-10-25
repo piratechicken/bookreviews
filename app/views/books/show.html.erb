@@ -19,7 +19,9 @@
   <h2>Reader Reviews</h2>
   <% if @book.reviews.any? %>
     <span class="book__stars">
-      <%= format_stars(@book) %>
+      <% format_stars(@book).each do |star| %>
+        <i class = "book__star-rating"><%= fa_icon star %></i>
+      <% end %>
     </span>
     <p><%= @book.reviews.average(:star_rating).round(1) %> out of 5 stars</p>
   <% else %>
