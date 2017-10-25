@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag(@profile.avatar_url(:thumb)) if @profile.avatar_data.present? %>
+<% if @profile.avatar_url(:thumb).present? %>
+  <%= image_tag(@profile.avatar_url(:thumb))  %>
+<% else %>
+  <%= image_tag('default_thumb.png') %>
+<% end %>
 
 <p>
   <strong>Name:</strong>

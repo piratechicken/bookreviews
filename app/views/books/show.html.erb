@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag(@book.image_url(:original)) if @book.image_data.present? %>
+<% if @book.image_url(:original).present? %>
+  <%= image_tag(@book.image_url(:original))  %>
+<% else %>
+  <%= image_tag('default_image.png') %>
+<% end %>
 
 <div class="container">
   <h2><%= @book.title %>, <span><%= @book.year %></span></h2>
@@ -59,7 +63,11 @@
         <%= form.button "Submit", class: "btn btn-primary" %>    
     <% end %>
   <% else %>
+<<<<<<< HEAD
     <p><%= link_to "Login", new_user_session_path %> to write a review</p>
+=======
+    <%= link_to 'Sign in to write a review', new_user_session_path %>
+>>>>>>> 4c33bc9061e8bd9cb3888a5f53399c69e5a6a26a
   <% end %>
 
   <% @book.reviews.each do |review| %>
